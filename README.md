@@ -409,7 +409,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 **Amit C04**
 
 - GitHub: [@AmitC04](https://github.com/AmitC04)
-- Project Link: [GENOSPARK](https://github.com/AmitC04/GENOSPARK)
+- Project Link: [GENOSPARK_USER-ACTIVITY]([https://github.com/AmitC04/GENOSPARK](https://github.com/AmitC04/GENOSPARK_USER-ACTIVITY)
 
 ---
 
