@@ -336,14 +336,20 @@ export default function Dashboard() {
       <button
         onClick={() => setIsMobileSidebarOpen(!isMobileSidebarOpen)}
         className="md:hidden fixed top-4 left-4 z-40 p-2 bg-white border rounded-lg"
+        aria-label={isMobileSidebarOpen ? 'Close navigation menu' : 'Open navigation menu'}
+        aria-expanded={isMobileSidebarOpen}
+        aria-controls="sidebar-nav"
       >
-        {isMobileSidebarOpen ? <X className="size-6" /> : <Menu className="size-6" />}
+        {isMobileSidebarOpen ? <X className="size-6" aria-hidden="true" /> : <Menu className="size-6" aria-hidden="true" />}
       </button>
 
       {/* Sidebar */}
       <div
+        id="sidebar-nav"
         className={`${isMobileSidebarOpen ? 'fixed' : 'hidden md:flex'} inset-0 z-30 md:relative md:w-64 flex flex-col bg-white border-r md:border-r`}
         style={{ borderColor: '#ecf0f1' }}
+        role="navigation"
+        aria-label="Main navigation"
       >
         <SidebarContent />
       </div>
@@ -380,6 +386,8 @@ export default function Dashboard() {
                 onClick={openNotifications}
                 className="relative p-2 text-gray-700 hover:bg-gray-100 rounded-lg transition-colors"
                 aria-label="Notifications"
+                aria-expanded={notifOpen}
+                aria-haspopup="true"
               >
                 <Bell className="size-5" />
                 {unreadCount > 0 && (

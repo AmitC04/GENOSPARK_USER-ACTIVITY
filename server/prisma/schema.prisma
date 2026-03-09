@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -130,13 +127,20 @@ model Session {
 model Activity {
   id            String    @id @default(cuid())
   userId        String
-  type          String    // course_enrolled, course_completed, order_placed, review_submitted, login, etc.
+  type          String    // login, registration, course_enrolled, course_completed, order_placed, review_submitted, etc.
   description   String
-  metadata      Json?     // additional data
+  metadata      Json?     // additional data (validated at application layer)
   isRead        Boolean   @default(false)
+  deletedAt     DateTime? // soft-delete: set instead of hard-deleting
   createdAt     DateTime  @default(now())
   
   user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   
+  // Performance indexes for common query patterns
+  @@index([userId])
+  @@index([createdAt])
+  @@index([userId, type, createdAt])
+  @@index([userId, isRead])
+  
   @@map("activities")
-}
+}   
